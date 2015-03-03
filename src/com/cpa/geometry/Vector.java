@@ -19,7 +19,7 @@ public class Vector {
 	}
 	
 	public Vector invert(){
-		return new Vector(-x, y);
+		return normal().normal();
 	}
 	
 	public double magnitude(){

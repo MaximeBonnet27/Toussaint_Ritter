@@ -33,9 +33,6 @@ public class TestsWindow extends JFrame implements KeyListener{
 
   @Override
   public void keyPressed(KeyEvent e) {
-    if(e.getKeyCode() == KeyEvent.VK_R){
-      canvas.rotateLine();
-    }
     if(e.getKeyCode() == KeyEvent.VK_Q){
       System.exit(0);
     }
