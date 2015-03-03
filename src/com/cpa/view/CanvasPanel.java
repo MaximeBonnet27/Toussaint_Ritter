@@ -63,6 +63,7 @@ public class CanvasPanel extends JPanel {
   private void drawPoint(Vertex p, Graphics g, Color color) {
     Graphics2D g2 = (Graphics2D) g;
     g2.setColor(color);
+//    g2.drawLine(p.x, p.y, p.x, p.y);
     g2.drawRect(p.x - 1, p.y - 1, 3, 3);
   }
 
