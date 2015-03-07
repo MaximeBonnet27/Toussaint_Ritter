@@ -24,8 +24,9 @@ public class GeometryTools {
 	}
 
 	public static double cos(Line l1, Line l2) {
-		return l1.director.dotProduct(l2.director)
+		double cos =  l1.director.dotProduct(l2.director)
 				/ (l1.director.magnitude() * l2.director.magnitude());
+		return cos;
 
 	}
 

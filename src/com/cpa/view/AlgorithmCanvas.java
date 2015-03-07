@@ -97,6 +97,7 @@ public class AlgorithmCanvas extends JPanel{
 
 		if (rectangle.size() == 0)
 			return;
+		System.out.println("DRAWING");
 		Graphics2D g2 = (Graphics2D) g;
 		g2.setColor(color);
 		int i;
@@ -257,6 +258,12 @@ public class AlgorithmCanvas extends JPanel{
 							support_l);
 					
 					rectangle = rect.getPoints();
+					try {
+						Thread.sleep(300);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 					repaint();
 					
 					if (rect.area() > areaMax) {

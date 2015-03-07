@@ -3,18 +3,20 @@ package com.cpa.geometry;
 import java.awt.Point;
 
 @SuppressWarnings("serial")
-public class Vertex extends Point implements Comparable<Vertex>{
+public class Vertex extends Point.Double implements Comparable<Vertex>{
   
   /* Polar coordinates
    * Mainly needed for Graham Scan
    */
+	
+	
   // Angle coordinate
   public double theta;
   // Square of distance from the origin.
   public double squaredR;
   
-  public Vertex(int x, int y) {
-    super(x, y);
+  public Vertex(double d, double e) {
+    super(d, e);
   }
   
   /**

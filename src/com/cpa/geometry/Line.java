@@ -32,26 +32,27 @@ public class Line {
 			return new Vertex((int) other.point.x, (int) (getSlope() * other.point.x + getB()));
 		}
 		if(other.getSlope() == getSlope()) return null;
-		
-		
-		
+
+
+
 		xInter = (other.getB() - getB()) / (getSlope() - other.getSlope());
 		yInter = getSlope() * xInter + getB();
 		return new Vertex ((int) xInter, (int) yInter);
-				
+
 
 	}
+
 
 	@Override
 	public String toString() {
 		return "Line [directionVectorX=" + director.x + ", directionVectorY="
 				+ director.y + ", point=" + point + "]";
 	}
-	
+
 	public double getSlope(){
 		return director.y / director.x;
 	}
-	
+
 	public double getB(){
 		return point.y - getSlope() * point.x;
 	}

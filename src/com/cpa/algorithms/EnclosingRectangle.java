@@ -39,11 +39,10 @@ public class EnclosingRectangle {
 
 		// 2 : Create the lines of support.
 		Line support_i, support_j, support_k, support_l;
-		support_i = new Line(hull.get(index_i), new Vector(0, 1));
+		support_i = new Line(hull.get(index_i), new Vector(0, -1));
 		support_j = new Line(hull.get(index_j), support_i.director.normal());
-		support_k = new Line(hull.get(index_k), support_i.director.invert());
-		support_l = new Line(hull.get(index_l), support_i.director.normal()
-				.invert());
+		support_k = new Line(hull.get(index_k), support_j.director.normal());
+		support_l = new Line(hull.get(index_l), support_k.director.normal());
 
 		// 3 : Get the angles.
 
@@ -51,46 +50,42 @@ public class EnclosingRectangle {
 		boolean iStepped = false, jStepped = false, kStepped = false, lStepped = false;
 		int count = 0;
 
-		double theta_i, theta_j, theta_k, theta_l;
-		double theta_min;
-		int index_angle_min;
+		double cos_theta_i, cos_theta_j, cos_theta_k, cos_theta_l;
+		double cos_theta_max;
+		int index_cos_max;
 		Rectangle res = new Rectangle(support_i, support_j, support_k,
 				support_l);
-		double areaMax = 0;
+		double areaMin = Double.MAX_VALUE;
 		int i = 0;
-		while (!hullScanned && i < 1) {
+		while (!hullScanned && ++i < 1) {
 
-			theta_i = GeometryTools.cos(support_i, new Line(hull.get(index_i),
+			cos_theta_i = GeometryTools.cos(support_i, new Line(hull.get(index_i),
 					hull.get((index_i + 1) % hull.size())));
-			theta_j = GeometryTools.cos(support_j, new Line(hull.get(index_j),
+			cos_theta_j = GeometryTools.cos(support_j, new Line(hull.get(index_j),
 					hull.get((index_j + 1) % hull.size())));
-			if (theta_i > theta_j) {
-				theta_min = theta_i;
-				index_angle_min = index_i;
-				System.out.println("i");
+			if (Math.abs(cos_theta_i) > Math.abs(cos_theta_j)) {
+				cos_theta_max = cos_theta_i;
+				index_cos_max = index_i;
 			} else {
-				theta_min = theta_j;
-				index_angle_min = index_j;
-				System.out.println("j");
+				cos_theta_max = cos_theta_j;
+				index_cos_max = index_j;
 			}
-			theta_k = GeometryTools.cos(support_k, new Line(hull.get(index_k),
+			cos_theta_k = GeometryTools.cos(support_k, new Line(hull.get(index_k),
 					hull.get((index_k + 1) % hull.size())));
-			if (theta_k > theta_min) {
-				theta_min = theta_k;
-				index_angle_min = index_k;
-				System.out.println("k");
+			if (Math.abs(cos_theta_k) > cos_theta_max) {
+				cos_theta_max = cos_theta_k;
+				index_cos_max = index_k;
 			}
-			theta_l = GeometryTools.cos(support_l, new Line(hull.get(index_l),
+			cos_theta_l = GeometryTools.cos(support_l, new Line(hull.get(index_l),
 					hull.get((index_l + 1) % hull.size())));
-			if (theta_l > theta_min) {
-				theta_min = theta_l;
-				index_angle_min = index_l;
-				System.out.println("l");
+			if (Math.abs(cos_theta_l) > cos_theta_max) {
+				cos_theta_max = cos_theta_l;
+				index_cos_max = index_l;
 			}
 
 			// 4 : The min point steps on.
 
-			if (index_angle_min == index_i) {
+			if (index_cos_max == index_i) {
 				index_i = (index_i + 1) % hull.size();
 				support_i.point = hull.get(index_i);
 
@@ -102,9 +97,8 @@ public class EnclosingRectangle {
 						support_i.director.invert());
 				support_l = new Line(hull.get(index_l), support_i.director
 						.normal().invert());
-				System.out.println("I");
 				iStepped = true;
-			} else if (index_angle_min == index_j) {
+			} else if (index_cos_max == index_j) {
 				index_j = (index_j + 1) % hull.size();
 				support_j.point = hull.get(index_j);
 
@@ -116,10 +110,9 @@ public class EnclosingRectangle {
 						support_j.director.invert());
 				support_i = new Line(hull.get(index_i), support_j.director
 						.normal().invert());
-				System.out.println("J");
 				jStepped = true;
 
-			} else if (index_angle_min == index_k) {
+			} else if (index_cos_max == index_k) {
 				index_k = (index_k + 1) % hull.size();
 				support_k.point = hull.get(index_k);
 
@@ -131,7 +124,6 @@ public class EnclosingRectangle {
 						support_k.director.invert());
 				support_j = new Line(hull.get(index_j), support_k.director
 						.normal().invert());
-				System.out.println("K");
 				kStepped = true;
 
 			} else {
@@ -146,17 +138,16 @@ public class EnclosingRectangle {
 						support_l.director.invert());
 				support_k = new Line(hull.get(index_k), support_l.director
 						.normal().invert());
-				System.out.println("L");
 				lStepped = true;
 
 			}
 			// 5 : Get rectangle's area.
 			Rectangle rect = new Rectangle(support_i, support_j, support_k,
 					support_l);
-			if (rect.area() > areaMax) {
+			if (rect.area() < areaMin) {
 				res = rect;
-				areaMax = rect.area();
-
+				areaMin = rect.area();
+				System.out.println(areaMin);
 			}
 
 			if (iStepped && index_i == index_i0 || jStepped

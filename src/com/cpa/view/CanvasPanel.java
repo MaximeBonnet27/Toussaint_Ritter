@@ -64,7 +64,7 @@ public class CanvasPanel extends JPanel {
 		Graphics2D g2 = (Graphics2D) g;
 		g2.setColor(color);
 		//    g2.drawLine(p.x, p.y, p.x, p.y);
-		g2.drawRect(p.x - 1, p.y - 1, 3, 3);
+		g2.drawRect((int)p.x - 1, (int)p.y - 1, 3, 3);
 	}
 
 	private void drawHull(Graphics g, Color color) {
@@ -75,12 +75,12 @@ public class CanvasPanel extends JPanel {
 		int i;
 		drawPoint(convexHull.get(0), g2, color);
 		for (i = 1; i < convexHull.size(); i++) {
-			g2.drawLine(convexHull.get(i - 1).x, convexHull.get(i - 1).y,
-					convexHull.get(i).x, convexHull.get(i).y);
+			g2.drawLine((int)convexHull.get(i - 1).x,(int) convexHull.get(i - 1).y,
+					(int)convexHull.get(i).x,(int) convexHull.get(i).y);
 			drawPoint(convexHull.get(i), g2, color);
 		}
-		g2.drawLine(convexHull.get(i - 1).x, convexHull.get(i - 1).y,
-				convexHull.get(0).x, convexHull.get(0).y);
+		g2.drawLine((int)convexHull.get(i - 1).x,(int) convexHull.get(i - 1).y,
+				(int) convexHull.get(0).x, (int) convexHull.get(0).y);
 
 		if (timeHull > 0) {
 			String message = "Convex Hull computed in " + Long.toString(timeHull)
@@ -101,12 +101,12 @@ public class CanvasPanel extends JPanel {
 		int i;
 		drawPoint(rectangle.get(0), g2, color);
 		for (i = 1; i < rectangle.size(); i++) {
-			g2.drawLine(rectangle.get(i - 1).x, rectangle.get(i - 1).y,
-					rectangle.get(i).x, rectangle.get(i).y);
+			g2.drawLine((int)rectangle.get(i - 1).x, (int)rectangle.get(i - 1).y,
+					(int)rectangle.get(i).x,(int) rectangle.get(i).y);
 			drawPoint(rectangle.get(i), g2, color);
 		}
-		g2.drawLine(rectangle.get(i - 1).x, rectangle.get(i - 1).y,
-				rectangle.get(0).x, rectangle.get(0).y);
+		g2.drawLine((int)rectangle.get(i - 1).x,(int) rectangle.get(i - 1).y,
+				(int)rectangle.get(0).x, (int)rectangle.get(0).y);
 
 		if (timeRectangle > 0) {
 			String message = "Rectangle computed in " + Long.toString(timeRectangle)
@@ -123,7 +123,7 @@ public class CanvasPanel extends JPanel {
 			return;
 		Graphics2D g2 = (Graphics2D) g;
 		g2.setColor(color);
-		g2.drawOval(circle.center.x - (int) circle.radius, circle.center.y
+		g2.drawOval((int)circle.center.x - (int) circle.radius, (int)circle.center.y
 				- (int) circle.radius, (int) (2 * circle.radius),
 				(int) (2 * circle.radius));
 
