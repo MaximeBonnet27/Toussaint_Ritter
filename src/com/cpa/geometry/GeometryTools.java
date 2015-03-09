@@ -26,6 +26,8 @@ public class GeometryTools {
 	public static double cos(Line l1, Line l2) {
 		double cos =  l1.director.dotProduct(l2.director)
 				/ (l1.director.magnitude() * l2.director.magnitude());
+		if(Math.abs(cos) == 1.0)
+		  return 1.0;
 		return cos;
 
 	}

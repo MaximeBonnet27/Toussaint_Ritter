@@ -9,7 +9,7 @@ public class Line {
 		if (w.x == v.x) {
 			director = new Vector(0.0, 1.0);
 		} else {
-			director = new Vector(1.0, ((double) w.y - v.y) / (w.x - v.x));
+			director = new Vector(w.x - v.x, (w.y - v.y));
 
 		}
 		point = v;

@@ -15,7 +15,9 @@ public class Vector {
 	}
 	
 	public Vector normal(){
-		return new Vector(-y, x);
+	  Vector res = new Vector(y, -x);
+//	  System.out.println(this + " -> " + res);
+		return res;
 	}
 	
 	public Vector invert(){
@@ -24,6 +26,11 @@ public class Vector {
 	
 	public double magnitude(){
 		return Math.sqrt(x * x + y * y);
+	}
+	
+	@Override
+	public String toString() {
+	  return "("+x+","+y+")";
 	}
 	
 }
