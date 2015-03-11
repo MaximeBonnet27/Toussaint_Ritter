@@ -13,6 +13,7 @@ import com.cpa.algorithms.ConvexHull;
 import com.cpa.algorithms.EnclosingRectangle;
 import com.cpa.algorithms.MinimumCircle;
 import com.cpa.geometry.Circle;
+import com.cpa.geometry.GeometryTools;
 import com.cpa.geometry.Vertex;
 import com.cpa.tools.TestFilesManager;
 
@@ -28,6 +29,8 @@ public class CanvasPanel extends JPanel {
 	double zoomFactor;
 	AffineTransform transform;
 
+	int nbFichier;
+	
 	public CanvasPanel() {
 		TestFilesManager tfm = TestFilesManager.getInstance();
 		set = tfm.getNextFile();
@@ -39,6 +42,7 @@ public class CanvasPanel extends JPanel {
 		transform = new AffineTransform();
 		zoomFactor = 1;
 		requestFocus();
+		nbFichier = 1;
 	}
 
 	@Override
@@ -46,6 +50,12 @@ public class CanvasPanel extends JPanel {
 		super.paintComponent(g);
 		draw(g);
 		setBackground(Color.BLACK);
+		Graphics2D g2 = (Graphics2D) g;
+		String message = "File " + nbFichier;
+		g2.setColor(Color.WHITE);
+		g2.setFont(new Font("DejaVu Sans Mono", Font.PLAIN, 13));
+		g2.drawChars(message.toCharArray(), 0, message.length(), 30, 13);
+		
 	}
 
 	private void draw(Graphics g) {
@@ -70,6 +80,8 @@ public class CanvasPanel extends JPanel {
 	private void drawHull(Graphics g, Color color) {
 		if (convexHull.size() == 0)
 			return;
+	
+		
 		Graphics2D g2 = (Graphics2D) g;
 		g2.setColor(color);
 		int i;
@@ -96,6 +108,7 @@ public class CanvasPanel extends JPanel {
 
 		if (rectangle.size() == 0)
 			return;
+		for(Vertex v : rectangle) System.out.println(v);
 		Graphics2D g2 = (Graphics2D) g;
 		g2.setColor(color);
 		int i;
@@ -148,6 +161,7 @@ public class CanvasPanel extends JPanel {
 		timeCircle = 0;
 		zoomFactor = 1;
 		repaint();
+		nbFichier++;
 	}
 
 	public void generateConvexHull() {
@@ -161,7 +175,7 @@ public class CanvasPanel extends JPanel {
 		if (convexHull.size() == 0)
 			return;
 		long start = System.currentTimeMillis();
-		rectangle = EnclosingRectangle.computeToussaint(convexHull);
+		rectangle = EnclosingRectangle.computeToussaint(convexHull).getPoints();
 		timeRectangle = System.currentTimeMillis() - start;
 		repaint();
 	}

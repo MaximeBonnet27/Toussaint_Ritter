@@ -1,9 +1,14 @@
 package com.cpa.mains;
 
+import java.util.ArrayList;
+
 import javax.swing.SwingUtilities;
 
+import com.cpa.algorithms.ConvexHull;
+import com.cpa.algorithms.EnclosingRectangle;
+import com.cpa.geometry.Vertex;
+import com.cpa.tools.TestFilesManager;
 import com.cpa.view.AlgorithmViewer;
-import com.cpa.view.TestsWindow;
 
 public class AlgoMain {
 
@@ -17,5 +22,9 @@ public class AlgoMain {
 	        tw.setVisible(true);
 	      }
 	    });
+		TestFilesManager tfm = TestFilesManager.getInstance();
+		tfm.getNextFile();
+		ArrayList<Vertex> set = tfm.getNextFile();
+		EnclosingRectangle.computeToussaint(ConvexHull.graham(set));
 	  }	
 }

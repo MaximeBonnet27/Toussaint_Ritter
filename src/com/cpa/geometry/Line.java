@@ -26,18 +26,16 @@ public class Line {
 			if(other.director.x == 0){
 				return null;
 			}
-			return new Vertex((int) point.x, (int) (other.getSlope() * point.x + other.getB()));
+			return new Vertex(point.x, (other.getSlope() * point.x + other.getB()));
 		}
 		if(other.director.x == 0){
-			return new Vertex((int) other.point.x, (int) (getSlope() * other.point.x + getB()));
+			return new Vertex(other.point.x, (getSlope() * other.point.x + getB()));
 		}
 		if(other.getSlope() == getSlope()) return null;
 
-
-
 		xInter = (other.getB() - getB()) / (getSlope() - other.getSlope());
 		yInter = getSlope() * xInter + getB();
-		return new Vertex ((int) xInter, (int) yInter);
+		return new Vertex (xInter, yInter);
 
 
 	}

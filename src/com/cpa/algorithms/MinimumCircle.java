@@ -42,7 +42,7 @@ public class MinimumCircle {
     double a = (p.x + q.x) / 2;
     double b = (p.y + q.y) / 2;
 
-    c = new Vertex((int) a, (int) b);
+    c = new Vertex(a, b);
     // 5.
     cp = Vertex.distance(a, b, p.x, p.y);
     // 6.
@@ -75,14 +75,14 @@ public class MinimumCircle {
       // 9.
       double a2 = alpha * a + beta * s.x;
       double b2 = alpha * b + beta * s.y;
-      c2 = new Vertex((int) a2, (int) b2);
+      c2 = new Vertex(a2, b2);
       for (Vertex temp : l) {
         if (Vertex.distance(a2, b2, temp.x, temp.y) > sc2) {
           l1.add(temp);
         }
       }
       if (l1.isEmpty()) {
-        return new Circle(c2, (int) sc2);
+        return new Circle(c2, sc2);
       } else {
         l = (ArrayList<Vertex>) l1.clone();
         a = a2;

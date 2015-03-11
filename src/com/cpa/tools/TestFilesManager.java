@@ -45,10 +45,13 @@ public class TestFilesManager {
   }
 
   public ArrayList<Vertex> getNextFile(){
-    currentIndex = (currentIndex + 1) % directory.listFiles().length;
+    currentIndex = (currentIndex + 1);
+    if(currentIndex >= directory.listFiles().length) return null;
     while(!(directory.listFiles()[currentIndex].isFile())){
-      currentIndex = (currentIndex + 1) % directory.listFiles().length;
+      currentIndex = (currentIndex + 1);
+      if(currentIndex >= directory.listFiles().length) return null;
     }
+    System.out.println(directory.listFiles()[currentIndex].getName() + " : ");
     return getPointsFromFile("samples/" + directory.listFiles()[currentIndex].getName());
   }
 
