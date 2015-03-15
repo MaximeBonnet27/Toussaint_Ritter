@@ -1,0 +1,37 @@
+<project name="CPA PROJET INDIVIDUEL - Toussaint et Ritter"
+	default="compile" basedir=".">
+
+	<property name="src" location="src" />
+	<property name="build" location="build" />
+	<target name="init">
+		<mkdir dir="${build}" />
+	</target>
+    <target name="compile" depends="init">
+        <javac debug="true" srcdir="${src}" excludes="" destdir="${build}"
+            includeantruntime="false" />
+    </target>
+
+    <target name="test" depends="compile" description="run examples">
+        <touch file="tmp.csv" />
+        <java classname="com.cpa.mains.MainTestFichiers"
+            classpath="${build}">
+            <arg value="tmp.csv" />
+        </java>
+        
+        <exec executable="/bin/bash">
+            <arg value="scriptSort.sh"/>
+        </exec>
+        <delete file="tmp.csv" />
+    </target>
+
+    <target name="clean">
+        <delete verbose="true"> 
+            <fileset dir="${basedir}" defaultexcludes="no">
+                <include name="**/*~" />
+            </fileset>
+        </delete>
+        <delete dir="${build}" />
+    </target>
+
+
+</project>

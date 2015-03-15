@@ -9,69 +9,69 @@ import com.cpa.geometry.Vertex;
 
 public class ConvexHull {
 
-  public static ArrayList<Vertex> computeGrahamScan(ArrayList<Vertex> set) {
-
-    ArrayList<Vertex> res = (ArrayList<Vertex>) set.clone();
-
-    // Step 1 : Find p, a point inside of the Convex Hull
-    Vertex x, y, z;
-    x = res.get(0);
-    y = res.get(1);
-    int i = 2;
-    Vertex p = null;
-    boolean pFound = false;
-    while (!pFound) {
-      z = res.get(i);
-      if (!GeometryTools.collinear(x, y, z)) {
-        p = GeometryTools.centroid(x, y, z);
-        pFound = true;
-      }
-      i++;
-    }
-    // Step 2 : Express each point in the set in polar coordinates
-    // with origin p
-    for (Vertex s : res) {
-      s.initPolarCoordinates(p);
-    }
-
-    // Step 3 : Sort the set in terms of increasing theta
-    Collections.sort(res);
-
-    // Step 4 : Delete un-useful points
-    for (i = 1; i < res.size(); i++) {
-      if (res.get(i).theta == res.get(i - 1).theta) {
-        res.remove(i);
-        i--;
-      } else if (res.get(i).squaredR == 0) {
-        res.remove(i);
-        i--;
-      }
-    }
-    // Step 5 : Iteration over the set
-    int k0 = 0, k1 = 1, k2 = 2;
-    double alpha, beta;
-    for(int iterations = 0; iterations < 2 * res.size(); iterations++){
-      alpha = GeometryTools.angle(res.get(k0), res.get(k1), p);
-      beta = GeometryTools.angle(p, res.get(k1), res.get(k2));
-      // First case (i) : 
-      if(alpha + beta >= Math.PI){
-        res.remove(k1);
-        k0 = (k0 - 1) % res.size();
-        k1 = (k1 - 1) % res.size();
-        
-        // Maybe something to do with k2?
-        // Done it at the end of the loop
-      }
-      // Second case (ii) : 
-      else {
-        k0 = (k0 + 1) % res.size();
-        k1 = (k1 + 1) % res.size();
-        k2 = (k2 + 1) % res.size();
-      }
-
-    }
-    return res;
-  }
+//  public static ArrayList<Vertex> computeGrahamScan(ArrayList<Vertex> set) {
+//
+//    ArrayList<Vertex> res = (ArrayList<Vertex>) set.clone();
+//
+//    // Step 1 : Find p, a point inside of the Convex Hull
+//    Vertex x, y, z;
+//    x = res.get(0);
+//    y = res.get(1);
+//    int i = 2;
+//    Vertex p = null;
+//    boolean pFound = false;
+//    while (!pFound) {
+//      z = res.get(i);
+//      if (!GeometryTools.collinear(x, y, z)) {
+//        p = GeometryTools.centroid(x, y, z);
+//        pFound = true;
+//      }
+//      i++;
+//    }
+//    // Step 2 : Express each point in the set in polar coordinates
+//    // with origin p
+//    for (Vertex s : res) {
+//      s.initPolarCoordinates(p);
+//    }
+//
+//    // Step 3 : Sort the set in terms of increasing theta
+//    Collections.sort(res);
+//
+//    // Step 4 : Delete un-useful points
+//    for (i = 1; i < res.size(); i++) {
+//      if (res.get(i).theta == res.get(i - 1).theta) {
+//        res.remove(i);
+//        i--;
+//      } else if (res.get(i).squaredR == 0) {
+//        res.remove(i);
+//        i--;
+//      }
+//    }
+//    // Step 5 : Iteration over the set
+//    int k0 = 0, k1 = 1, k2 = 2;
+//    double alpha, beta;
+//    for(int iterations = 0; iterations < 2 * res.size(); iterations++){
+//      alpha = GeometryTools.angle(res.get(k0), res.get(k1), p);
+//      beta = GeometryTools.angle(p, res.get(k1), res.get(k2));
+//      // First case (i) : 
+//      if(alpha + beta >= Math.PI){
+//        res.remove(k1);
+//        k0 = (k0 - 1) % res.size();
+//        k1 = (k1 - 1) % res.size();
+//        
+//        // Maybe something to do with k2?
+//        // Done it at the end of the loop
+//      }
+//      // Second case (ii) : 
+//      else {
+//        k0 = (k0 + 1) % res.size();
+//        k1 = (k1 + 1) % res.size();
+//        k2 = (k2 + 1) % res.size();
+//      }
+//
+//    }
+//    return res;
+//  }
   
   public static ArrayList<Vertex> graham(ArrayList<Vertex> points){
     ArrayList<Vertex> enveloppe = (ArrayList<Vertex>) points.clone();

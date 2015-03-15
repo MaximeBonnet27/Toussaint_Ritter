@@ -13,9 +13,13 @@ public class TestFilesManager {
   private static TestFilesManager instance;
   private int currentIndex;
   private File directory;
+  
+  private String currentFileName;
+  
   private TestFilesManager(){
     directory = new File("samples/");
     currentIndex = 0;
+    
   }
 
   public static TestFilesManager getInstance(){
@@ -51,8 +55,12 @@ public class TestFilesManager {
       currentIndex = (currentIndex + 1);
       if(currentIndex >= directory.listFiles().length) return null;
     }
-    System.out.println(directory.listFiles()[currentIndex].getName() + " : ");
+    currentFileName = directory.listFiles()[currentIndex].getName();
     return getPointsFromFile("samples/" + directory.listFiles()[currentIndex].getName());
   }
+  
+  public String getCurrentFileName() {
+	return currentFileName;
+}
 
 }
