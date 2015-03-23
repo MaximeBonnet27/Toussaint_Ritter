@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Point;
 import java.awt.geom.AffineTransform;
 import java.util.ArrayList;
 
@@ -13,16 +14,14 @@ import com.cpa.algorithms.ConvexHull;
 import com.cpa.algorithms.EnclosingRectangle;
 import com.cpa.algorithms.MinimumCircle;
 import com.cpa.geometry.Circle;
-import com.cpa.geometry.GeometryTools;
-import com.cpa.geometry.Vertex;
 import com.cpa.tools.TestFilesManager;
 
 @SuppressWarnings("serial")
 public class CanvasPanel extends JPanel {
 
-	ArrayList<Vertex> set;
-	ArrayList<Vertex> convexHull;
-	ArrayList<Vertex> rectangle;
+	ArrayList<Point.Double> set;
+	ArrayList<Point.Double> convexHull;
+	ArrayList<Point.Double> rectangle;
 	Circle circle;
 	long timeHull, timeRectangle, timeCircle;
 
@@ -34,8 +33,8 @@ public class CanvasPanel extends JPanel {
 	public CanvasPanel() {
 		TestFilesManager tfm = TestFilesManager.getInstance();
 		set = tfm.getNextFile();
-		convexHull = new ArrayList<Vertex>();
-		rectangle = new ArrayList<Vertex>();
+		convexHull = new ArrayList<Point.Double>();
+		rectangle = new ArrayList<Point.Double>();
 		timeHull = 0;
 		timeRectangle = 0;
 		timeCircle = 0;
@@ -61,7 +60,7 @@ public class CanvasPanel extends JPanel {
 	private void draw(Graphics g) {
 		Graphics2D g2 = (Graphics2D) g;
 		g2.setTransform(transform);
-		for (Vertex v : set) {
+		for (Point.Double v : set) {
 			drawPoint(v, g2, Color.WHITE);
 		}
 
@@ -70,7 +69,7 @@ public class CanvasPanel extends JPanel {
 		drawCircle(g2, Color.PINK);
 	}
 
-	private void drawPoint(Vertex p, Graphics g, Color color) {
+	private void drawPoint(Point.Double p, Graphics g, Color color) {
 		Graphics2D g2 = (Graphics2D) g;
 		g2.setColor(color);
 		//    g2.drawLine(p.x, p.y, p.x, p.y);
@@ -108,7 +107,7 @@ public class CanvasPanel extends JPanel {
 
 		if (rectangle.size() == 0)
 			return;
-		for(Vertex v : rectangle) System.out.println(v);
+		for(Point.Double v : rectangle) System.out.println(v);
 		Graphics2D g2 = (Graphics2D) g;
 		g2.setColor(color);
 		int i;
@@ -153,8 +152,8 @@ public class CanvasPanel extends JPanel {
 	public void nextTest() {
 		TestFilesManager tfm = TestFilesManager.getInstance();
 		set = tfm.getNextFile();//tfm.getRandomList();//tfm.getNextFile();
-		convexHull = new ArrayList<Vertex>();
-		rectangle = new ArrayList<Vertex>();
+		convexHull = new ArrayList<Point.Double>();
+		rectangle = new ArrayList<Point.Double>();
 		circle = null;
 		timeHull = 0;
 		timeRectangle = 0;

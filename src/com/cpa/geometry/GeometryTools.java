@@ -1,5 +1,6 @@
 package com.cpa.geometry;
 
+import java.awt.Point;
 import java.util.ArrayList;
 
 public class GeometryTools {
@@ -13,7 +14,7 @@ public class GeometryTools {
 
 	}
 	
-	public static double getArea(ArrayList<Vertex> hull) {
+	public static double getArea(ArrayList<Point.Double> hull) {
 		double firstSum = 0;
 		for(int i = 0; i < hull.size(); i++){
 			firstSum += hull.get(i).x * hull.get((i + 1) % hull.size()).y;

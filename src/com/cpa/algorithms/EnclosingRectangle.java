@@ -1,18 +1,16 @@
 package com.cpa.algorithms;
 
-import java.awt.geom.Line2D;
+import java.awt.Point;
 import java.util.ArrayList;
 
 import com.cpa.geometry.GeometryTools;
 import com.cpa.geometry.Line;
 import com.cpa.geometry.Rectangle;
 import com.cpa.geometry.Vector;
-import com.cpa.geometry.Vertex;
-import com.cpa.view.AlgorithmCanvas;
 
 public class EnclosingRectangle {
 
-	public static Rectangle computeToussaint(ArrayList<Vertex> hull) {
+	public static Rectangle computeToussaint(ArrayList<Point.Double> hull) {
 		// 1: Find the 4 extreme points.
 
 		int index_i = 0, index_j = 0, index_k = 0, index_l = 0;

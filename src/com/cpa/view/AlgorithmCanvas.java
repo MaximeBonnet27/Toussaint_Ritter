@@ -1,27 +1,25 @@
 package com.cpa.view;
 
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Point;
 import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
 import com.cpa.algorithms.ConvexHull;
-import com.cpa.algorithms.EnclosingRectangle;
 import com.cpa.geometry.GeometryTools;
 import com.cpa.geometry.Line;
 import com.cpa.geometry.Rectangle;
 import com.cpa.geometry.Vector;
-import com.cpa.geometry.Vertex;
 import com.cpa.tools.TestFilesManager;
 
 public class AlgorithmCanvas extends JPanel{
 
-	static ArrayList<Vertex> set;
-	static ArrayList<Vertex> convexHull;
-	public static ArrayList<Vertex> rectangle;
+	static ArrayList<Point.Double> set;
+	static ArrayList<Point.Double> convexHull;
+	public static ArrayList<Point.Double> rectangle;
 
 	public AlgorithmCanvas() {
 		this.set = new ArrayList<>();
@@ -33,8 +31,8 @@ public class AlgorithmCanvas extends JPanel{
 		init = false;
 		TestFilesManager tfm = TestFilesManager.getInstance();
 		set = tfm.getNextFile();//tfm.getRandomList();
-		convexHull = new ArrayList<Vertex>();
-		rectangle = new ArrayList<Vertex>();
+		convexHull = new ArrayList<Point.Double>();
+		rectangle = new ArrayList<Point.Double>();
 		repaint();
 	}
 
@@ -63,7 +61,7 @@ public class AlgorithmCanvas extends JPanel{
 
 	private void draw(Graphics g) {
 		Graphics2D g2 = (Graphics2D) g;
-		for (Vertex v : set) {
+		for (Point.Double v : set) {
 			drawPoint(v, g2, Color.WHITE);
 		}
 
@@ -71,7 +69,7 @@ public class AlgorithmCanvas extends JPanel{
 		drawRectangle(g2, Color.GREEN);
 	}
 
-	private void drawPoint(Vertex p, Graphics g, Color color) {
+	private void drawPoint(Point.Double p, Graphics g, Color color) {
 		Graphics2D g2 = (Graphics2D) g;
 		g2.setColor(color);
 		//    g2.drawLine(p.x, p.y, p.x, p.y);
@@ -121,7 +119,7 @@ public class AlgorithmCanvas extends JPanel{
 	static int index_k = 0;
 	static int index_l = 0;
 	static int index_i0, index_j0, index_k0, index_l0;
-	static ArrayList<Vertex> hull;
+	static ArrayList<Point.Double> hull;
 	static Line support_i, support_j, support_k, support_l;
 	static boolean hullScanned = false;
 	static boolean iStepped = false, jStepped = false, kStepped = false, lStepped = false;

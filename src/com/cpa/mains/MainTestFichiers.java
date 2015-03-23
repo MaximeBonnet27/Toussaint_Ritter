@@ -1,5 +1,6 @@
 package com.cpa.mains;
 
+import java.awt.Point;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -9,7 +10,6 @@ import com.cpa.algorithms.ConvexHull;
 import com.cpa.algorithms.EnclosingRectangle;
 import com.cpa.geometry.GeometryTools;
 import com.cpa.geometry.Rectangle;
-import com.cpa.geometry.Vertex;
 import com.cpa.tools.TestFilesManager;
 
 public class MainTestFichiers {
@@ -21,8 +21,8 @@ public class MainTestFichiers {
 		
 		TestFilesManager tfm = TestFilesManager.getInstance();
 		int i = 0;
-		ArrayList<Vertex> set = null;
-		ArrayList<Vertex> hull = null;
+		ArrayList<Point.Double> set = null;
+		ArrayList<Point.Double> hull = null;
 		Rectangle rect = null;
 		double ratio = 0;
 		double sum = 0;

@@ -1,24 +1,24 @@
 package com.cpa.algorithms;
 
+import java.awt.Point;
 import java.util.ArrayList;
 import java.util.Random;
 
 import com.cpa.geometry.Circle;
-import com.cpa.geometry.Vertex;
 
 public class MinimumCircle {
-  public static Circle computeRitter(ArrayList<Vertex> points) {
+  public static Circle computeRitter(ArrayList<Point.Double> points) {
 
     if (points.isEmpty())
       return null;
 
     // 1.
     Random random = new Random();
-    Vertex dummy = points.get(random.nextInt(points.size()));
+    Point.Double dummy = points.get(random.nextInt(points.size()));
     double distance = Integer.MIN_VALUE;
     // 2.
-    Vertex p = null;
-    for (Vertex temp : points) {
+    Point.Double p = null;
+    for (Point.Double temp : points) {
       double d = dummy.distance(temp);
       if (d > distance) {
         distance = d;
@@ -26,8 +26,8 @@ public class MinimumCircle {
       }
     }
     // 3.
-    Vertex q = null;
-    for (Vertex temp : points) {
+    Point.Double q = null;
+    for (Point.Double temp : points) {
       double d = p.distance(temp);
       if (d > distance) {
         distance = d;
@@ -35,20 +35,20 @@ public class MinimumCircle {
       }
     }
 
-    Vertex c, c2 = null;
+    Point.Double c, c2 = null;
     double cp = 0;
 
     // 4.
     double a = (p.x + q.x) / 2;
     double b = (p.y + q.y) / 2;
 
-    c = new Vertex(a, b);
+    c = new Point.Double(a, b);
     // 5.
-    cp = Vertex.distance(a, b, p.x, p.y);
+    cp = Point.Double.distance(a, b, p.x, p.y);
     // 6.
-    ArrayList<Vertex> l = new ArrayList<Vertex>();
-    for (Vertex temp : points) {
-      if (Vertex.distance(a, b, temp.x, temp.y) > cp) {
+    ArrayList<Point.Double> l = new ArrayList<Point.Double>();
+    for (Point.Double temp : points) {
+      if (Point.Double.distance(a, b, temp.x, temp.y) > cp) {
         l.add(temp);
       }
     }
@@ -56,16 +56,16 @@ public class MinimumCircle {
       return new Circle(c, cp);
     }
     // 7.
-    Vertex s = null;
+    Point.Double s = null;
 
     while (!l.isEmpty()) {
-      ArrayList<Vertex> l1 = new ArrayList<Vertex>();
+      ArrayList<Point.Double> l1 = new ArrayList<Point.Double>();
       s = l.get(random.nextInt(l.size()));
       l.remove(s);
       // 8.
 
       double alpha, beta;
-      double sc = Vertex.distance(s.x, s.y, a, b);
+      double sc = Point.Double.distance(s.x, s.y, a, b);
       double st = sc + cp;
       double sc2 = st / 2;
       double cc2 = sc - sc2;
@@ -75,16 +75,16 @@ public class MinimumCircle {
       // 9.
       double a2 = alpha * a + beta * s.x;
       double b2 = alpha * b + beta * s.y;
-      c2 = new Vertex(a2, b2);
-      for (Vertex temp : l) {
-        if (Vertex.distance(a2, b2, temp.x, temp.y) > sc2) {
+      c2 = new Point.Double(a2, b2);
+      for (Point.Double temp : l) {
+        if (Point.Double.distance(a2, b2, temp.x, temp.y) > sc2) {
           l1.add(temp);
         }
       }
       if (l1.isEmpty()) {
         return new Circle(c2, sc2);
       } else {
-        l = (ArrayList<Vertex>) l1.clone();
+        l = (ArrayList<Point.Double>) l1.clone();
         a = a2;
         b = b2;
         cp = sc2;

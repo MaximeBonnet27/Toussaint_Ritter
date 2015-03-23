@@ -2,12 +2,8 @@ package com.cpa.view;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.util.ArrayList;
 
 import javax.swing.JFrame;
-
-import com.cpa.geometry.Vertex;
-import com.cpa.tools.TestFilesManager;
 
 public class AlgorithmViewer extends JFrame implements KeyListener {
 	private AlgorithmCanvas canvas;
