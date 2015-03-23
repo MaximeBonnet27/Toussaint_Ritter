@@ -37,7 +37,6 @@ public class Line {
 		yInter = getSlope() * xInter + getB();
 		return new Vertex (xInter, yInter);
 
-
 	}
 
 

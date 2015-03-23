@@ -15,7 +15,7 @@ public class Vector {
 	}
 	
 	public Vector normal(){
-	  Vector res = new Vector(y, -x);
+	  Vector res = new Vector(-y, x);
 //	  System.out.println(this + " -> " + res);
 		return res;
 	}

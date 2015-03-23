@@ -51,7 +51,7 @@ public class CanvasPanel extends JPanel {
 		draw(g);
 		setBackground(Color.BLACK);
 		Graphics2D g2 = (Graphics2D) g;
-		String message = "File " + nbFichier;
+		String message = "File " + TestFilesManager.getInstance().getCurrentFileName();
 		g2.setColor(Color.WHITE);
 		g2.setFont(new Font("DejaVu Sans Mono", Font.PLAIN, 13));
 		g2.drawChars(message.toCharArray(), 0, message.length(), 30, 13);
@@ -152,7 +152,7 @@ public class CanvasPanel extends JPanel {
 
 	public void nextTest() {
 		TestFilesManager tfm = TestFilesManager.getInstance();
-		set = tfm.getNextFile();
+		set = tfm.getNextFile();//tfm.getRandomList();//tfm.getNextFile();
 		convexHull = new ArrayList<Vertex>();
 		rectangle = new ArrayList<Vertex>();
 		circle = null;

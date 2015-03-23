@@ -1,5 +1,6 @@
 package com.cpa.algorithms;
 
+import java.awt.geom.Line2D;
 import java.util.ArrayList;
 
 import com.cpa.geometry.GeometryTools;
@@ -39,9 +40,9 @@ public class EnclosingRectangle {
 		// 2 : Create the lines of support.
 		Line support_i, support_j, support_k, support_l;
 		support_i = new Line(hull.get(index_i), new Vector(0, 1));
-		support_j = new Line(hull.get(index_j), support_i.director.normal());
-		support_k = new Line(hull.get(index_k), support_j.director.normal());
-		support_l = new Line(hull.get(index_l), support_k.director.normal());
+		support_j = new Line(hull.get(index_j), new Vector(1,0));
+		support_k = new Line(hull.get(index_k), new Vector(0,-1));
+		support_l = new Line(hull.get(index_l), new Vector(-1,0));
 
 		// 3 : Get the angles.
 
@@ -55,14 +56,13 @@ public class EnclosingRectangle {
 		Rectangle res = new Rectangle(support_i, support_j, support_k,
 				support_l);
 		double areaMin = Double.MAX_VALUE;
-		int i = 0;
 		Rectangle rect = res;
-		while (!hullScanned && i++ < 200000) {
+		while (!hullScanned) {
 			/*System.out.println("I : " + index_i);
 			System.out.println("J : " + index_j);
 			System.out.println("K : " + index_k);
 			System.out.println("L : " + index_l);
-			*/
+			 */
 			/*
 			if(index_i == index_j || index_i == index_k || index_i == index_l){
 				System.out.println("IIINN YOUR FACE");
@@ -76,7 +76,8 @@ public class EnclosingRectangle {
 				System.out.println("KKKN YOUR FACE");
 				System.out.println(index_k);
 			}
-			*/
+			 */
+			
 			cos_theta_i = GeometryTools.cos(support_i, new Line(hull.get(index_i),
 					hull.get((index_i + 1) % hull.size())));
 			cos_theta_j = GeometryTools.cos(support_j, new Line(hull.get(index_j),
@@ -105,11 +106,11 @@ public class EnclosingRectangle {
 				support_i = new Line(hull.get(index_i), hull.get((index_i + 1)
 						% hull.size()));
 				support_j = new Line(hull.get(index_j),
-						support_i.director.normal());
+						support_i.director.normal().invert());
 				support_k = new Line(hull.get(index_k),
-						support_j.director.normal());
-				support_l = new Line(hull.get(index_l), support_k.director
-						.normal());
+						support_i.director.invert());
+				support_l = new Line(hull.get(index_l), support_j.director
+						.invert());
 
 				index_i = (index_i + 1) % hull.size();
 				support_i.point = hull.get(index_i);
@@ -130,11 +131,11 @@ public class EnclosingRectangle {
 				support_j = new Line(hull.get(index_j), hull.get((index_j + 1)
 						% hull.size()));
 				support_k = new Line(hull.get(index_k),
-						support_j.director.normal());
+						support_j.director.normal().invert());
 				support_l = new Line(hull.get(index_l),
-						support_k.director.normal());
-				support_i = new Line(hull.get(index_i), support_l.director
-						.normal());
+						support_j.director.invert());
+				support_i = new Line(hull.get(index_i), support_k.director
+						.invert());
 
 				index_j = (index_j + 1) % hull.size();
 				support_j.point = hull.get(index_j);
@@ -157,11 +158,11 @@ public class EnclosingRectangle {
 				support_k = new Line(hull.get(index_k), hull.get((index_k + 1)
 						% hull.size()));
 				support_l = new Line(hull.get(index_l),
-						support_k.director.normal());
+						support_k.director.normal().invert());
 				support_i = new Line(hull.get(index_i),
-						support_l.director.normal());
-				support_j = new Line(hull.get(index_j), support_i.director
-						.normal());
+						support_k.director.invert());
+				support_j = new Line(hull.get(index_j), support_l.director
+						.invert());
 				index_k = (index_k + 1) % hull.size();
 				support_k.point = hull.get(index_k);
 				/*
@@ -183,11 +184,11 @@ public class EnclosingRectangle {
 				support_l = new Line(hull.get(index_l), hull.get((index_l + 1)
 						% hull.size()));
 				support_i = new Line(hull.get(index_i),
-						support_l.director.normal());
+						support_l.director.normal().invert());
 				support_j = new Line(hull.get(index_j),
-						support_i.director.normal());
-				support_k = new Line(hull.get(index_k), support_j.director
-						.normal());
+						support_l.director.invert());
+				support_k = new Line(hull.get(index_k), support_i.director
+						.invert());
 				index_l = (index_l + 1) % hull.size();
 				support_l.point = hull.get(index_l);
 				/*
@@ -205,13 +206,13 @@ public class EnclosingRectangle {
 				lStepped = true;
 
 			}
-			
+
 			/*System.out.println("cosI " + cos_theta_i);
 			System.out.println("cosJ " + cos_theta_j);
 			System.out.println("cosK " + cos_theta_k);
 			System.out.println("cosL " + cos_theta_l);
 			System.out.println();
-			*/
+			 */
 			// 5 : Get rectangle's area.
 			rect = new Rectangle(support_i, support_j, support_k,
 					support_l);
