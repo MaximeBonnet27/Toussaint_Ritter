@@ -1,15 +1,19 @@
 package com.cpa.mains;
 
-import java.awt.Point;
-import java.util.ArrayList;
-
 import javax.swing.SwingUtilities;
 
-import com.cpa.algorithms.ConvexHull;
-import com.cpa.algorithms.EnclosingRectangle;
-import com.cpa.tools.TestFilesManager;
 import com.cpa.view.AlgorithmViewer;
 
+/**
+ * Main permettant de suivre l'évolution du rectangle pendant 
+ * l'algorithme Toussaint.
+ * Commandes : 
+ * N -> Fichier Suivant
+ * H -> Enveloppe Convexe
+ * R -> (require H) Prochain rectangle (rappuyer pour avancer dans l'algo).
+ * @author Maxime Bonnet
+ *
+ */
 public class AlgoMain {
 
 
@@ -22,9 +26,5 @@ public class AlgoMain {
 	        tw.setVisible(true);
 	      }
 	    });
-		TestFilesManager tfm = TestFilesManager.getInstance();
-		tfm.getNextFile();
-		ArrayList<Point.Double> set = tfm.getNextFile();
-		EnclosingRectangle.computeToussaint(ConvexHull.graham(set));
 	  }	
 }

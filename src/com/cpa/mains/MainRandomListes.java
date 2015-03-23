@@ -9,6 +9,11 @@ import com.cpa.geometry.GeometryTools;
 import com.cpa.geometry.Rectangle;
 import com.cpa.tools.TestFilesManager;
 
+/**
+ * Un main testant l'algorithme Toussaint sur des points aléatoires.
+ * @author Maxime Bonnet
+ *
+ */
 public class MainRandomListes {
 
 	public static void main(String[] args) {
