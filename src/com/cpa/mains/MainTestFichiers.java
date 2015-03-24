@@ -34,7 +34,6 @@ public class MainTestFichiers {
 		double sum = 0;
 
 		BufferedWriter bw = new BufferedWriter(new FileWriter(outputFileName));
-		bw.write("Nom du fichier,Aire du Rectangle,Aire de l'enveloppe,Ratio");
 		while ((set = tfm.getNextFile()) != null) {
 			hull = ConvexHull.graham(ConvexHull.pixelSort(set));
 			rect = EnclosingRectangle.computeToussaint(hull);
