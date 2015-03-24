@@ -165,7 +165,7 @@ public class CanvasPanel extends JPanel {
 
 	public void generateConvexHull() {
 		long start = System.currentTimeMillis();
-		convexHull = ConvexHull.graham(ConvexHull.pixelSort2(set));
+		convexHull = ConvexHull.graham(ConvexHull.pixelSort(set));
 		timeHull = System.currentTimeMillis() - start;
 		repaint();
 	}

@@ -37,7 +37,7 @@ public class AlgorithmCanvas extends JPanel{
 	}
 
 	public void generateConvexHull() {
-		convexHull = ConvexHull.graham(ConvexHull.pixelSort2(set));
+		convexHull = ConvexHull.graham(ConvexHull.pixelSort(set));
 		repaint();
 	}
 	static boolean init = false;

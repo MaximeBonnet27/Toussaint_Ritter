@@ -35,7 +35,7 @@ public class MainTestFichiers {
 
 		BufferedWriter bw = new BufferedWriter(new FileWriter(outputFileName));
 		while ((set = tfm.getNextFile()) != null) {
-			hull = ConvexHull.graham(ConvexHull.pixelSort2(set));
+			hull = ConvexHull.graham(ConvexHull.pixelSort(set));
 			rect = EnclosingRectangle.computeToussaint(hull);
 			ratio = rect.area() / GeometryTools.getArea(hull);
 

@@ -23,7 +23,7 @@ public class MainRandomListes {
 		int sum = 0;
 		for(int i = 0; i < 10000; ++i){
 			liste = TestFilesManager.getInstance().getRandomList();
-			hull = ConvexHull.graham(ConvexHull.pixelSort2(liste));
+			hull = ConvexHull.graham(ConvexHull.pixelSort(liste));
 			rect = EnclosingRectangle.computeToussaint(hull);
 			if(rect.area() / GeometryTools.getArea(hull) < 1.0){
 				System.out.println("DAMN MAN " + i );
