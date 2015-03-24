@@ -34,17 +34,18 @@ public class MainTestFichiers {
 		double sum = 0;
 
 		BufferedWriter bw = new BufferedWriter(new FileWriter(outputFileName));
+		bw.write("Nom du fichier,Aire du Rectangle,Aire de l'enveloppe,Ratio");
 		while ((set = tfm.getNextFile()) != null) {
 			hull = ConvexHull.graham(ConvexHull.pixelSort(set));
 			rect = EnclosingRectangle.computeToussaint(hull);
 			ratio = rect.area() / GeometryTools.getArea(hull);
 
 			bw.write(tfm.getCurrentFileName());
-			bw.write(";");
+			bw.write(",");
 			bw.write(String.valueOf(rect.area()));
-			bw.write(";");
+			bw.write(",");
 			bw.write(String.valueOf(GeometryTools.getArea(hull)));
-			bw.write(";");
+			bw.write(",");
 			bw.write(String.valueOf(ratio));
 			bw.write("\n");
 
