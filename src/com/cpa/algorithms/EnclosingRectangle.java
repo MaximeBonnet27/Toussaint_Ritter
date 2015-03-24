@@ -34,15 +34,19 @@ public class EnclosingRectangle {
 		// un tour complet.
 		int index_i0, index_j0, index_k0, index_l0;
 		for (int i = 1; i < hull.size(); i++) {
+			// i est le point d'abscisse minimum
 			if (hull.get(i).x < hull.get(index_i).x) {
 				index_i = i;
 			}
+			// l est le point d'ordonnée minimum
 			if (hull.get(i).y < hull.get(index_l).y) {
 				index_l = i;
 			}
+			// k est le point d'abscisse maximum
 			if (hull.get(i).x > hull.get(index_k).x) {
 				index_k = i;
 			}
+			// j est le point d'ordonnée maximum
 			if (hull.get(i).y > hull.get(index_j).y) {
 				index_j = i;
 			}
