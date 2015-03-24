@@ -24,8 +24,7 @@ public class Line {
 		if (w.x == v.x) {
 			director = new Vector(0.0, 1.0);
 		} else {
-			director = new Vector(w.x - v.x, (w.y - v.y));
-
+			director = new Vector((w.x - v.x), (w.y - v.y));
 		}
 		point = v;
 	}
