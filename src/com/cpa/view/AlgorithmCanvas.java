@@ -98,7 +98,6 @@ public class AlgorithmCanvas extends JPanel{
 
 		if (rectangle.size() == 0)
 			return;
-		System.out.println("DRAWING");
 		Graphics2D g2 = (Graphics2D) g;
 		g2.setColor(color);
 		int i;
@@ -171,6 +170,7 @@ public class AlgorithmCanvas extends JPanel{
 	}
 
 	public static void computeToussaint(){
+	  	  
 		cos_theta_i = GeometryTools.cos(support_i, new Line(hull.get(index_i),
 				hull.get((index_i + 1) % hull.size())));
 		cos_theta_j = GeometryTools.cos(support_j, new Line(hull.get(index_j),
@@ -300,12 +300,12 @@ public class AlgorithmCanvas extends JPanel{
 
 		}
 
-		/*System.out.println("cosI " + cos_theta_i);
-					System.out.println("cosJ " + cos_theta_j);
-					System.out.println("cosK " + cos_theta_k);
-					System.out.println("cosL " + cos_theta_l);
-					System.out.println();
-		 */
+//		System.out.println("cosI " + cos_theta_i);
+//					System.out.println("cosJ " + cos_theta_j);
+//					System.out.println("cosK " + cos_theta_k);
+//					System.out.println("cosL " + cos_theta_l);
+//					System.out.println();
+		 
 		// 5 : Get rectangle's area.
 		rect = new Rectangle(support_i, support_j, support_k,
 				support_l);

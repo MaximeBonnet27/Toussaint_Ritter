@@ -21,16 +21,19 @@ public class MainRandomListes {
 		ArrayList<Point.Double> hull = null;
 		Rectangle rect = null;
 		int sum = 0;
-		for(int i = 0; i < 10000; ++i){
+		for(int i = 0; i < 100; ++i){
 			liste = TestFilesManager.getInstance().getRandomList();
 			hull = ConvexHull.graham(ConvexHull.pixelSort(liste));
+			try{
 			rect = EnclosingRectangle.computeToussaint(hull);
+			}catch(IllegalArgumentException e){
+			  i--; continue;
+			}
 			if(rect.area() / GeometryTools.getArea(hull) < 1.0){
-				System.out.println("DAMN MAN " + i );
 				sum++;
 			}
 		}
-		System.err.println(sum);
+		System.out.println("Nombre d'erreurs : " + sum);
 	}
 	
 }
