@@ -21,7 +21,7 @@ public class MainRandomListes {
 		ArrayList<Point.Double> hull = null;
 		Rectangle rect = null;
 		int sum = 0;
-		for(int i = 0; i < 100; ++i){
+		for(int i = 0; i < 100000; ++i){
 			liste = TestFilesManager.getInstance().getRandomList();
 			hull = ConvexHull.graham(ConvexHull.pixelSort(liste));
 			try{

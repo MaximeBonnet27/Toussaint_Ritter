@@ -26,7 +26,7 @@ public class GeometryTools {
 				/ (l1.director.magnitude() * l2.director.magnitude());
 		// BLACK MAGIC
 		return Math.abs(cos);
-
+		//return cos;
 	}
 
 	/**
