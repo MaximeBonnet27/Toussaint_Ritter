@@ -30,5 +30,12 @@ public class Circle {
 		this.center = center;
 		this.radius = radius;
 	}
+	/**
+	 * Aire du cercle
+	 * @return l'aire du cercle
+	 */
+	public double area(){
+		return Math.PI * radius * radius;
+	}
 
 }
