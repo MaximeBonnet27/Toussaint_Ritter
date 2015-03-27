@@ -43,7 +43,7 @@ public class MainTestFichiers {
 		while ((set = tfm.getNextFile()) != null) {
 			hull = ConvexHull.graham(ConvexHull.pixelSort(set));
 			rect = EnclosingRectangle.computeToussaint(hull);
-			c = MinimumCircle.computeRitter(hull);
+			c = MinimumCircle.computeRitter(set);
 			circleArea = c.area();
 			rectArea = rect.area();
 			hullArea = GeometryTools.getArea(hull);

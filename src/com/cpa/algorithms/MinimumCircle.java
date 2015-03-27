@@ -32,7 +32,7 @@ public class MinimumCircle {
 		Point.Double p = null;
 		for (Point.Double temp : points) {
 			double d = dummy.distance(temp);
-			if (d > distance) {
+			if (d >= distance) {
 				distance = d;
 				p = temp;
 			}
@@ -41,7 +41,7 @@ public class MinimumCircle {
 		Point.Double q = null;
 		for (Point.Double temp : points) {
 			double d = p.distance(temp);
-			if (d > distance) {
+			if (d >= distance) {
 				distance = d;
 				q = temp;
 			}
