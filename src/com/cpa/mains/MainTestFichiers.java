@@ -33,12 +33,10 @@ public class MainTestFichiers {
 		ArrayList<Point.Double> hull = null;
 		Rectangle rect = null;
 		Circle c = null;
-		double ratio = 0;
+		double ratioRect = 0, ratioCircle = 0;
 		double sum = 0;
-		double rectArea, hullArea, circleArea;
-		double sumRect = 0;
-		double sumHull = 0; 
 		double sumCircle = 0;
+		double rectArea, hullArea, circleArea;
 		BufferedWriter bw = new BufferedWriter(new FileWriter(outputFileName));
 		while ((set = tfm.getNextFile()) != null) {
 			hull = ConvexHull.graham(ConvexHull.pixelSort(set));
@@ -47,25 +45,25 @@ public class MainTestFichiers {
 			circleArea = c.area();
 			rectArea = rect.area();
 			hullArea = GeometryTools.getArea(hull);
-			ratio = rectArea / hullArea;
-			
+			ratioRect = rectArea / hullArea;
+			ratioCircle = circleArea / hullArea;
 			bw.write(tfm.getCurrentFileName());
 			bw.write(",");
 			bw.write(String.valueOf(rectArea));
 			bw.write(",");
 			bw.write(String.valueOf(hullArea));
 			bw.write(",");
-			bw.write(String.valueOf(ratio));
+			bw.write(String.valueOf(ratioRect));
+			bw.write(",");
+			bw.write(String.valueOf(ratioCircle));
 			bw.write("\n");
-			System.out.println(ratio);
-			sumHull += hullArea;
-			sumRect += rectArea;
-			sumCircle += circleArea;
-			sum += ratio;
+			System.out.println(ratioRect);
+			sumCircle += ratioCircle;
+			sum += ratioRect;
 			i++;
 		}
-		System.out.println(sum / i);
-
+		System.out.println("RECT : " + sum / i);
+		System.out.println("CIRCLE : " + sumCircle / i);
 		bw.close();
 	}
 
