@@ -38,10 +38,17 @@ public class MainTestFichiers {
 		double sumCircle = 0;
 		double rectArea, hullArea, circleArea;
 		BufferedWriter bw = new BufferedWriter(new FileWriter(outputFileName));
+		long timeStartRectangle, timeEndRectangle;
+		long timeStartCircle, timeEndCircle;
+		long timeRectangle = 0, timeCircle = 0;
 		while ((set = tfm.getNextFile()) != null) {
 			hull = ConvexHull.graham(ConvexHull.pixelSort(set));
+			timeStartRectangle = System.nanoTime();
 			rect = EnclosingRectangle.computeToussaint(hull);
+			timeEndRectangle = System.nanoTime();
+			timeStartCircle = System.nanoTime();
 			c = MinimumCircle.computeRitter(set);
+			timeEndCircle = System.nanoTime();
 			circleArea = c.area();
 			rectArea = rect.area();
 			hullArea = GeometryTools.getArea(hull);
@@ -55,15 +62,21 @@ public class MainTestFichiers {
 			bw.write(",");
 			bw.write(String.valueOf(ratioRect));
 			bw.write(",");
+			bw.write(String.valueOf(timeEndRectangle - timeStartRectangle));
+			bw.write(",");
 			bw.write(String.valueOf(ratioCircle));
+			bw.write(",");
+			bw.write(String.valueOf(timeEndCircle - timeStartCircle));
 			bw.write("\n");
-			System.out.println(ratioRect);
 			sumCircle += ratioCircle;
 			sum += ratioRect;
+			timeRectangle += (timeEndRectangle - timeStartRectangle);
+			timeCircle += (timeEndCircle - timeStartCircle);
 			i++;
 		}
-		System.out.println("RECT : " + sum / i);
-		System.out.println("CIRCLE : " + sumCircle / i);
+		System.out.println("RECT : " + sum / i + " " + ((double) timeRectangle / i) + " ns");
+		System.out.println("CIRCLE : " + sumCircle / i + " " + ((double) timeCircle / i) + " ns");
+		
 		bw.close();
 	}
 

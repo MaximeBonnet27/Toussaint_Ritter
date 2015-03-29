@@ -115,4 +115,27 @@ public class MinimumCircle {
 
 	}
 
+	/**
+	 * Calcul naif du cercle minimum
+	 * 
+	 * @param points
+	 * @return Le cercle minimum englobant tous les points de la liste passée en
+	 *         paramètre.
+	 */
+	public static Circle naif(ArrayList<Point.Double> points) {
+		double distanceMax = -1, distance = 0;
+		Point.Double centre = new Point.Double();
+		for(int i = 0; i < points.size(); ++i){
+			for(int j = i+1; j< points.size(); ++j){
+				distance = points.get(i).distance(points.get(j));
+				if(distance > distanceMax){
+					distanceMax = distance;
+					centre.x = (points.get(i).x + points.get(j).y) / 2;
+					centre.y = (points.get(i).y + points.get(j).y) / 2;
+				}
+			}
+		}
+		return new Circle(centre, distanceMax / 2);
+	}
+
 }
