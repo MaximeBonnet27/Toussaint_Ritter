@@ -24,6 +24,16 @@
         <delete file="tmp.csv" />
     </target>
 
+	<target name="ui" depends="compile" description="run examples">
+	        <java classname="com.cpa.mains.MainUI"
+	            classpath="${build}">
+	        </java>
+    </target>
+	<target name="step" depends="compile" description="run examples">
+		        <java classname="com.cpa.mains.AlgoMain"
+		            classpath="${build}">
+		        </java>
+	    </target>
     <target name="clean">
         <delete verbose="true"> 
             <fileset dir="${basedir}" defaultexcludes="no">

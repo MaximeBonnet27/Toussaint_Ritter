@@ -72,7 +72,6 @@ public class CanvasPanel extends JPanel {
 	private void drawPoint(Point.Double p, Graphics g, Color color) {
 		Graphics2D g2 = (Graphics2D) g;
 		g2.setColor(color);
-		//    g2.drawLine(p.x, p.y, p.x, p.y);
 		g2.drawRect((int)p.x - 1, (int)p.y - 1, 3, 3);
 	}
 
@@ -107,7 +106,6 @@ public class CanvasPanel extends JPanel {
 
 		if (rectangle.size() == 0)
 			return;
-		for(Point.Double v : rectangle) System.out.println(v);
 		Graphics2D g2 = (Graphics2D) g;
 		g2.setColor(color);
 		int i;

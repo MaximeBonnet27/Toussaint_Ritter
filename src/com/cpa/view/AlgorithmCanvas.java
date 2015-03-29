@@ -72,7 +72,6 @@ public class AlgorithmCanvas extends JPanel{
 	private void drawPoint(Point.Double p, Graphics g, Color color) {
 		Graphics2D g2 = (Graphics2D) g;
 		g2.setColor(color);
-		//    g2.drawLine(p.x, p.y, p.x, p.y);
 		g2.drawRect((int)p.x - 1,(int) p.y - 1, 3, 3);
 	}
 
@@ -208,17 +207,6 @@ public class AlgorithmCanvas extends JPanel{
 			index_i = (index_i + 1) % hull.size();
 			support_i.point = hull.get(index_i);
 
-			/*if(index_i == index_j){
-		          index_j = (index_j + 1) % hull.size();
-		          support_j.point = hull.get(index_j);
-		        }else if(index_i == index_k){
-		          index_k = (index_k + 1) % hull.size();
-		          support_k.point = hull.get(index_k);
-		        }else if(index_i == index_l){
-		          index_l = (index_l + 1) % hull.size();
-		          support_l.point = hull.get(index_l);
-		        }
-			 */
 			iStepped = true;
 		} else if (index_cos_max == index_j) {
 			support_j = new Line(hull.get(index_j), hull.get((index_j + 1)
@@ -233,18 +221,6 @@ public class AlgorithmCanvas extends JPanel{
 			index_j = (index_j + 1) % hull.size();
 			support_j.point = hull.get(index_j);
 
-			/*if(index_j == index_k){
-		          index_k = (index_k + 1) % hull.size();
-		          support_k.point = hull.get(index_k);
-		        }else if(index_j == index_l){
-		          index_l = (index_l + 1) % hull.size();
-		          support_l.point = hull.get(index_l);
-		        } 
-		        else if(index_j == index_i){
-		          index_i = (index_i + 1) % hull.size();
-		          support_i.point = hull.get(index_i);
-		        }
-			 */
 			jStepped = true;
 
 		} else if (index_cos_max == index_k) {
@@ -258,18 +234,6 @@ public class AlgorithmCanvas extends JPanel{
 					.invert());
 			index_k = (index_k + 1) % hull.size();
 			support_k.point = hull.get(index_k);
-			/*
-		        if(index_k == index_j){
-		          index_j = (index_j + 1) % hull.size();
-		          support_j.point = hull.get(index_j);
-		        }else if(index_k == index_i){
-		          index_i = (index_i + 1) % hull.size();
-		          support_i.point = hull.get(index_i);
-		        }else if(index_k == index_l){
-		          index_l = (index_l + 1) % hull.size();
-		          support_l.point = hull.get(index_l);
-		        }
-			 */
 			kStepped = true;
 
 		} else {
@@ -284,28 +248,10 @@ public class AlgorithmCanvas extends JPanel{
 					.invert());
 			index_l = (index_l + 1) % hull.size();
 			support_l.point = hull.get(index_l);
-			/*
-		        if(index_l == index_j){
-		          index_j = (index_j + 1) % hull.size();
-		          support_j.point = hull.get(index_j);
-		        }else if(index_l == index_k){
-		          index_k = (index_k + 1) % hull.size();
-		          support_k.point = hull.get(index_k);
-		        }else if(index_l == index_i){
-		          index_i = (index_i + 1) % hull.size();
-		          support_i.point = hull.get(index_i);
-		        }
-			 */
 			lStepped = true;
 
 		}
 
-//		System.out.println("cosI " + cos_theta_i);
-//					System.out.println("cosJ " + cos_theta_j);
-//					System.out.println("cosK " + cos_theta_k);
-//					System.out.println("cosL " + cos_theta_l);
-//					System.out.println();
-		 
 		// 5 : Get rectangle's area.
 		rect = new Rectangle(support_i, support_j, support_k,
 				support_l);
