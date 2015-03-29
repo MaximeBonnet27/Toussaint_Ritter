@@ -25,12 +25,12 @@
     </target>
 
 	<target name="ui" depends="compile" description="run examples">
-	        <java classname="com.cpa.mains.MainUI"
+	        <java classname="com.cpa.mains.MainUI" fork="true"
 	            classpath="${build}">
 	        </java>
     </target>
 	<target name="step" depends="compile" description="run examples">
-		        <java classname="com.cpa.mains.AlgoMain"
+		        <java classname="com.cpa.mains.AlgoMain" fork="true"
 		            classpath="${build}">
 		        </java>
 	    </target>

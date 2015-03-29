@@ -1,14 +1,14 @@
 package com.cpa.geometry;
 
 /**
- * Un vecteur, représenté par ses coordonnées cartésiennes.
+ * Un vecteur, represente par ses coordonnees cartesiennes.
  * 
  * @author Maxime Bonnet
  * 
  */
 public class Vector {
 	/**
-	 * Les coordonnées cartésiennes du vecteur.
+	 * Les coordonnees cartesiennes du vecteur.
 	 */
 	public double x, y;
 
@@ -19,8 +19,8 @@ public class Vector {
 	}
 
 	/**
-	 * Renvoie le coefficient directeur entre ce vecteur et le vecteur passé en
-	 * paramètre.
+	 * Renvoie le coefficient directeur entre ce vecteur et le vecteur passe en
+	 * parametre.
 	 * 
 	 * @param other
 	 *            Un autre vecteur
@@ -31,18 +31,18 @@ public class Vector {
 	}
 
 	/**
-	 * Renvoie un vecteur normal à ce vecteur (rotation - PI / 2)
+	 * Renvoie un vecteur normal a ce vecteur (rotation - PI / 2)
 	 * 
-	 * @return un vecteur normal à ce vecteur
+	 * @return un vecteur normal a ce vecteur
 	 */
 	public Vector normal() {
 		return new Vector(-y, x);
 	}
 
 	/**
-	 * Renvoie un vecteur opposé à ce vecteur (rotation PI)
+	 * Renvoie un vecteur oppose a ce vecteur (rotation PI)
 	 * 
-	 * @return un vecteur opposé à ce vecteur
+	 * @return un vecteur oppose a ce vecteur
 	 */
 	public Vector invert() {
 		return normal().normal();

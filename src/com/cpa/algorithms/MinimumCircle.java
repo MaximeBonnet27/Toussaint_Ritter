@@ -119,8 +119,8 @@ public class MinimumCircle {
 	 * Calcul naif du cercle minimum
 	 * 
 	 * @param points
-	 * @return Le cercle minimum englobant tous les points de la liste passée en
-	 *         paramètre.
+	 * @return Le cercle minimum englobant tous les points de la liste passee en
+	 *         parametre.
 	 */
 	public static Circle naif(ArrayList<Point.Double> points) {
 		double distanceMax = -1, distance = 0;
